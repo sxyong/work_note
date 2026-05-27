@@ -1,0 +1,31 @@
+set nocompatible        " 关闭兼容 vi 模式
+set number              " 显示行号
+set relativenumber      " 相对行号（写代码很舒服）
+set cursorline          " 高亮当前行
+set showmatch           " 括号匹配
+set mouse=a             " 开启鼠标支持
+
+set encoding=utf-8
+set fileencoding=utf-8
+set termguicolors       " 真彩色支持
+
+set tabstop=4           " tab 显示宽度
+set shiftwidth=4        " 自动缩进宽度
+set expandtab           " 用空格代替 tab
+set smartindent         " 智能缩进
+
+set ignorecase          " 搜索忽略大小写
+set smartcase           " 但包含大写时区分
+set incsearch           " 实时搜索
+set hlsearch            " 高亮搜索结果
+
+set wildmenu            " 命令补全增强
+set laststatus=2        " 显示状态栏
+set ruler               " 显示光标位置
+set scrolloff=5         " 光标上下留 5 行
+
+syntax on
+
+filetype plugin indent on
+
+colorscheme elflord
