@@ -44,3 +44,81 @@ vector<int> GetVector() {
     return vecInt;
 }
 ```
+
+## stl 中常用的算法
+
+查找。  
+```c++
+void fun() {
+    vector<int> vec {1, 3, 8, 10};
+    auto it = find(vec.begin(), vec.end(), 8);
+    if (it != vec.end()) {
+        std::cout << "find it: " << *it << std::endl;
+    } else {
+        std::cout << "not find" << std::endl;
+    }
+
+    it = find_if(vec.begin(), vec.end() [](int x) {
+        return x > 4;
+    });
+}
+```
+
+删除。调用remove后，需要调用erase。  
+```c++
+void fun() {
+    vector<int> vec { 1, 3, 9, 5, 8, 2 };
+    auto it = remove_if(vec.begin(), vec.end(), [](int a) {
+        return (a % 2) == 1;
+    });
+
+    std::cout << "after remove " << std::endl;
+    for (const auto& i : vec) {
+        std::cout << i << " " << std::endl;
+    }
+
+    std::cout << "after erase " << std::endl;
+
+    if (it != vec.end()) {
+        vec.erase(it, vec.end());
+    }
+
+    for (const auto& i : vec) {
+        std::cout << i << " " << std::endl;
+    }
+
+    std::cout << std::endl;
+}
+```
+
+累加。  
+```c++
+void fun_sum() {
+    vector<int> vec { 1, 3, 9, 5, 8, 2 };
+
+    int sum = accumulate(vec.begin(), vec.end(), 0);
+    std::cout << "sum is: " << sum << std::endl;
+}
+```
+
+统计。  
+```c++
+void fun() {
+    vector<int> vec { 1, 3, 9, 5, 8, 2, 2, 2 };
+
+    int cnt = count(vec.begin(), vec.end(), 2);
+    std::cout << "have [" << cnt << "] " << "2" << std::endl;
+
+    cnt = count_if(vec.begin(), vec.end(), [](int a){
+        return a > 5;
+    });
+    std::cout << "have [" << cnt << "] " << ">5" << std::endl;
+}
+```
+
+判断。  
+- any_of 任意一个满足
+- all_of 全都满足
+- none_of 全不满足  
+
+这里不在一一举例。  
