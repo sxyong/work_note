@@ -122,3 +122,43 @@ void fun() {
 - none_of 全不满足  
 
 这里不在一一举例。  
+
+## 智能指针
+
+- unique_ptr  
+```c++
+unique_ptr<int> p = make_unique<int>(10);
+// p.get() 获取原始指针。
+// 本身也可以当作对象指针来使用
+
+// ❌ 错误  不能拷贝
+// std::unique_ptr<int> p2 = p1;
+
+// ✅ 正确  可以移动
+std::unique_ptr<int> p2 = std::move(p1);
+```
+
+- shared_prt  
+```c++
+shared_ptr<int> p = make_shared<int>(10);
+shared_ptr<int> p2 = p;
+```
+p和p2指向同一个指针。内部使用引用计数管理。当计数为0的时候销毁。  
+
+- weak_ptr  
+```c++
+class A {
+    share_ptr<B> b;
+};
+
+class B {
+    weak_ptr<A> a;
+};
+```
+当2个对象相互引用的时候，不能都使用share_ptr,其中一个需要使用weak_ptr。  
+
+weak_ptr的创建方法如下：  
+```c++
+unique_ptr<int> p = make_unique<int>(10);
+weak_ptr<int> p2 = p;
+```
