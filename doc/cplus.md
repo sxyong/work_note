@@ -162,3 +162,33 @@ weak_ptr的创建方法如下：
 unique_ptr<int> p = make_unique<int>(10);
 weak_ptr<int> p2 = p;
 ```
+
+## c++ 流
+
+流是一种抽象，用来表示“连续的数据序列”。常见的方法有：<<, >>, read, write。常用的有文件（ifstream, ofstream, fstream），内存（stringstream, istringstream, ostream），标准设备（cin, cout, cerr）。  
+
+文本模式用<<, >>格式化读写。二进制直接使用read, write。  
+
+文件流示例：  
+```c++
+#include <fstream>
+std::ofstream ofs("data.txt");
+ofs << "hello\n";
+
+std::ifstream ifs("data.txt");
+std::string s;
+ifs >> s;  // 读取到空格或换行
+```
+
+内存流示例：  
+```c++
+#include <sstream>
+std::stringstream ss;
+ss << 123 << " " << 456;
+
+int a, b;
+ss >> a >> b;
+```
+
+示例代码参考project/stream。  
+
