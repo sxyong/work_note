@@ -192,3 +192,42 @@ ss >> a >> b;
 
 示例代码参考project/stream。  
 
+## c++ 锁
+
+`互斥锁`std::mutex。
+```c++
+#include <mutex>
+// 方式1
+std::mutex mtx;
+mtx.lock();
+dosomething();
+mtx.unlock();
+
+// 方式2
+std::lock_guard<std::mutex> lock(mtx);
+dosomething();
+
+// 方式3
+std::unique_lock<std::mutex> lock(mtx);
+dosomething();
+```
+
+`读写锁`shared_mutex。  
+```c++
+std::shared_mutex rwlock;
+int value = 0;
+
+void reader() {
+    // 读锁
+    std::shared_lock lock(rwlock);
+
+    std::cout << value << std::endl;
+}
+
+void writer() {
+    // 写锁
+    std::unique_lock lock(rwlock);
+
+    ++value;
+}
+```
